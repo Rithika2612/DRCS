@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>DRCS | Reports & Analytics</title>
+  <link rel="stylesheet" href="css/reports.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
+</head>
+<body class="dashboard-screen role-reports">
+<div class="layout">
+  <aside class="sidebar">
+    <a class="brand" href="admin.html"><span>🛡</span><div><strong>DRCS</strong><small>Admin Command</small></div></a>
+    <nav>
+      <a href="admin.html">Dashboard</a>
+      <a href="admin.html#disasters">Disasters</a>
+      <a href="admin.html#helpRequests">Help Requests</a>
+      <a href="admin.html#resourceRequests">Hospital Requests</a>
+      <a href="map.html">Live Disaster Map</a>
+      <a class="active" href="reports.html">Reports &amp; Analytics</a>
+    </nav>
+    <button id="logoutButton">Log out</button>
+  </aside>
+  <main>
+    <header>
+      <div><p class="eyebrow">Live operational intelligence</p><h1>Reports &amp; Analytics</h1><p>Verified statistics.</p></div>
+      <button id="downloadPdf" class="primary">Download PDF</button>
+    </header>
+    <p id="message" class="message" aria-live="polite">Loading live records…</p>
+    <section class="filters">
+      <label>From date<input id="fromDate" type="date"></label>
+      <label>To date<input id="toDate" type="date"></label>
+      <label>Request status<select id="statusFilter"><option value="all">All statuses</option><option>pending</option><option>approved</option><option>assigned</option><option>accepted</option><option>in-progress</option><option>completed</option><option>rejected</option></select></label>
+      <button id="resetFilters" class="secondary">Reset filters</button>
+    </section>
+    <section class="stats">
+      <article><span>Total disasters</span><strong id="totalDisasters">0</strong><small id="approvedDisasters">0 approved</small></article>
+      <article><span>Help requests</span><strong id="totalRequests">0</strong><small id="activeRequests">0 active</small></article>
+      <article><span>Completion rate</span><strong id="completionRate">0%</strong><small>Completed help requests</small></article>
+      <article><span>Available volunteers</span><strong id="availableVolunteers">0</strong><small id="totalVolunteers">0 registered</small></article>
+      <article><span>Hospital requests</span><strong id="hospitalRequests">0</strong><small id="fulfilledHospital">0 fulfilled</small></article>
+      <article><span>NGO allocations</span><strong id="allocationCount">0</strong><small id="allocatedUnits">0 total units</small></article>
+    </section>
+    <section class="charts">
+      <article class="panel"><div class="panel-head"><div><p class="eyebrow">Help workflow</p><h2>Request Status</h2></div></div><div class="chart-box"><canvas id="requestChart"></canvas></div></article>
+      <article class="panel"><div class="panel-head"><div><p class="eyebrow">Incident overview</p><h2>Disaster Severity</h2></div></div><div class="chart-box"><canvas id="disasterChart"></canvas></div></article>
+      <article class="panel"><div class="panel-head"><div><p class="eyebrow">Hospital support</p><h2>Resource Requests</h2></div></div><div class="chart-box"><canvas id="hospitalChart"></canvas></div></article>
+      <article class="panel"><div class="panel-head"><div><p class="eyebrow">Volunteer network</p><h2>Availability</h2></div></div><div class="chart-box"><canvas id="volunteerChart"></canvas></div></article>
+    </section>
+    <section class="panel wide">
+      <div class="panel-head"><div><p class="eyebrow">Recent operations</p><h2>Latest Help Requests</h2></div><span id="recordCount">0 records</span></div>
+      <div class="table-wrap"><table><thead><tr><th>Citizen</th><th>Type</th><th>Priority</th><th>Status</th><th>Volunteer</th><th>Submitted</th></tr></thead><tbody id="reportTable"></tbody></table></div>
+      <p id="emptyState" class="empty" hidden>No requests match the selected filters.</p>
+    </section>
+  </main>
+</div>
+<script type="module" src="js/reports.js"></script>
+</body>
+</html>

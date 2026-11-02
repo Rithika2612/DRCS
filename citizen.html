@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>DRCS | Citizen Dashboard</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <style>
+        .activity-list{display:grid;gap:14px;margin-top:18px}.activity-card{display:flex;gap:16px;align-items:flex-start;padding:20px;border:1px solid #dbe8f3;border-radius:18px;background:rgba(255,255,255,.92);box-shadow:0 10px 28px rgba(18,48,77,.06)}.activity-icon{width:48px;height:48px;flex:0 0 48px;border-radius:14px;display:grid;place-items:center;font-size:1.3rem}.activity-danger{background:#fff0f0}.activity-help{background:#eef7ff}.activity-content{min-width:0;flex:1}.activity-topline{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.activity-type{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#1677ff}.activity-card h3{margin:3px 0 7px;font-size:1.08rem;color:#12304d}.activity-card p{margin:0;color:#5d7185;line-height:1.55}.activity-meta{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px;font-size:.82rem;color:#6b7f91}.activity-status{display:inline-flex;padding:6px 10px;border-radius:999px;font-size:.72rem;font-weight:800;text-transform:capitalize;white-space:nowrap}.activity-status-pending{background:#fff4d6;color:#946200}.activity-status-assigned,.activity-status-in-progress{background:#e8f2ff;color:#1761a8}.activity-status-completed{background:#e7f8ee;color:#187344}.activity-status-cancelled,.activity-status-rejected{background:#ffebeb;color:#a52b2b}.activity-status-default{background:#eef2f6;color:#526272}.hidden{display:none!important}@media(max-width:650px){.activity-topline{flex-direction:column}.activity-card{padding:16px}}
+    </style>
+</head>
+<body class="dashboard-screen role-citizen">
+
+<div class="dashboard-layout">
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            <span>🛡</span>
+            <div>
+                <h2>DRCS</h2>
+                <p>Citizen Portal</p>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="#overview" class="nav-link">
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a href="report.html" class="nav-link">
+                <span>!</span>
+                Report Disaster
+            </a>
+
+            <a href="request.html" class="nav-link">
+                <span>+</span>
+                Request Help
+            </a>
+
+
+            <a href="my-requests.html" class="nav-link">
+                <span>◎</span>
+                Track Requests
+            </a>
+
+            <a href="#activity" class="nav-link">
+                <span>◉</span>
+                Notifications
+            </a>
+
+            <a href="#profile" class="nav-link">
+                <span>♙</span>
+                Profile
+            </a>
+
+        </nav>
+
+        <button id="logoutButton" class="logout-button">
+            Logout
+        </button>
+
+    </aside>
+
+    <main class="dashboard-main">
+
+        <header id="overview" class="dashboard-header">
+
+            <div>
+                <p class="header-label">
+                    Citizen Dashboard
+                </p>
+
+                <h1>
+                    Welcome,
+                    <span id="userName">Citizen</span>
+                </h1>
+
+                <p>
+                    Report emergencies, request help and follow your
+                    request status.
+                </p>
+            </div>
+
+            <div id="profile" class="user-profile">
+                <div class="profile-icon" id="profileInitial">
+                    C
+                </div>
+
+                <div>
+                    <strong id="profileName">Citizen</strong>
+                    <span>Citizen Account</span>
+                </div>
+            </div>
+
+        </header>
+
+        <section class="emergency-banner">
+
+            <div>
+                <p class="banner-label">
+                    Emergency assistance
+                </p>
+
+                <h2>
+                    Are you currently facing an emergency?
+                </h2>
+
+                <p>
+                    Send a disaster report or request immediate help
+                    through the DRCS network.
+                </p>
+            </div>
+
+            <div class="banner-actions">
+
+                <a href="report.html" class="primary-action">
+                    Report Disaster
+                </a>
+
+                <a href="request.html" class="secondary-action">
+                    Request Help
+                </a>
+
+            </div>
+
+        </section>
+
+        <section class="quick-section">
+
+            <div class="section-heading">
+                <div>
+                    <p class="header-label">
+                        Quick actions
+                    </p>
+
+                    <h2>
+                        What would you like to do?
+                    </h2>
+                </div>
+            </div>
+
+            <div class="quick-grid">
+
+                <a href="report.html" class="quick-card">
+                    <div class="quick-icon danger-icon">
+                        !
+                    </div>
+
+                    <div>
+                        <h3>Report a disaster</h3>
+
+                        <p>
+                            Report floods, fires, landslides or other
+                            emergency situations.
+                        </p>
+                    </div>
+
+                    <span class="card-arrow">→</span>
+                </a>
+
+                <a href="request.html" class="quick-card">
+                    <div class="quick-icon help-icon">
+                        +
+                    </div>
+
+                    <div>
+                        <h3>Request assistance</h3>
+
+                        <p>
+                            Request food, water, medical aid, rescue or
+                            shelter support.
+                        </p>
+                    </div>
+
+                    <span class="card-arrow">→</span>
+                </a>
+
+                <a href="my-requests.html" class="quick-card">
+                    <div class="quick-icon track-icon">
+                        ◎
+                    </div>
+
+                    <div>
+                        <h3>Track your requests</h3>
+
+                        <p>
+                            View whether your submitted requests are
+                            pending, assigned or completed.
+                        </p>
+                    </div>
+
+                    <span class="card-arrow">→</span>
+                </a>
+
+                <a href="#activity" class="quick-card">
+                    <div class="quick-icon alert-icon">
+                        ◉
+                    </div>
+
+                    <div>
+                        <h3>View emergency alerts</h3>
+
+                        <p>
+                            Read important notifications and disaster
+                            warnings from authorities.
+                        </p>
+                    </div>
+
+                    <span class="card-arrow">→</span>
+                </a>
+                
+
+            </div>
+
+        </section>
+
+        <section id="activity" class="status-section">
+
+            <div class="section-heading">
+                <div>
+                    <p class="header-label">
+                        Recent activity
+                    </p>
+
+                    <h2>
+                        Your latest submissions
+                    </h2>
+                </div>
+            </div>
+
+            <div class="activity-list hidden" id="activityContainer"></div>
+
+            <div class="empty-state" id="emptyState">
+
+                <div class="empty-icon">
+                    ◇
+                </div>
+
+                <h3>No submissions yet</h3>
+
+                <p>
+                    Reports and assistance requests submitted by you
+                    will appear here.
+                </p>
+
+                <a href="request.html">
+                    Create your first request
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script type="module" src="js/guard.js"></script>
+<script type="module" src="js/citizen.js"></script>
+<script src="js/dashboard-nav.js"></script>
+
+</body>
+</html>

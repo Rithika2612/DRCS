@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>DRCS | Report Disaster</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/report.css">
+</head>
+<body class="dashboard-screen role-citizen role-citizen-form">
+
+<div class="dashboard-layout">
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            <span>🛡</span>
+
+            <div>
+                <h2>DRCS</h2>
+                <p>Citizen Portal</p>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="citizen.html" class="nav-link">
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a href="report.html" class="nav-link active">
+                <span>!</span>
+                Report Disaster
+            </a>
+
+            <a href="request.html" class="nav-link">
+                <span>🆘</span>
+                Request Help
+            </a>
+
+            <a href="my-requests.html" class="nav-link">
+                <span>📋</span>
+                My Requests
+            </a>
+
+            <a href="citizen.html#activity" class="nav-link">
+                <span>◉</span>
+                Notifications
+            </a>
+
+            <a href="citizen.html#profile" class="nav-link">
+                <span>♙</span>
+                Profile
+            </a>
+
+        </nav>
+
+        <button id="logoutButton" class="logout-button">
+            Logout
+        </button>
+
+    </aside>
+
+    <main class="dashboard-main">
+
+        <header class="page-header">
+
+            <div>
+                <p class="header-label">
+                    Citizen Services
+                </p>
+
+                <h1>Report a Disaster</h1>
+
+                <p>
+                    Provide clear and accurate details so response teams
+                    can assess the emergency quickly.
+                </p>
+            </div>
+
+            <a href="citizen.html" class="back-link">
+                ← Back to Dashboard
+            </a>
+
+        </header>
+
+        <section class="form-layout">
+
+            <div class="form-card">
+
+                <div class="form-card-heading">
+                    <h2>Disaster information</h2>
+
+                    <p>
+                        Fields marked with an asterisk are required.
+                    </p>
+                </div>
+
+                <form id="reportForm" novalidate>
+
+                    <div class="form-row">
+
+                        <div class="field-group">
+                            <label for="disasterType">
+                                Disaster type *
+                            </label>
+
+                            <select id="disasterType">
+                                <option value="">
+                                    Select disaster type
+                                </option>
+                                <option value="flood">Flood</option>
+                                <option value="fire">Fire</option>
+                                <option value="earthquake">
+                                    Earthquake
+                                </option>
+                                <option value="landslide">
+                                    Landslide
+                                </option>
+                                <option value="cyclone">Cyclone</option>
+                                <option value="building-collapse">
+                                    Building Collapse
+                                </option>
+                                <option value="other">Other</option>
+                            </select>
+
+                            <small
+                                class="field-error"
+                                id="disasterTypeError"
+                            ></small>
+                        </div>
+
+                        <div class="field-group">
+                            <label for="severity">
+                                Severity *
+                            </label>
+
+                            <select id="severity">
+                                <option value="">
+                                    Select severity
+                                </option>
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                                <option value="critical">
+                                    Critical
+                                </option>
+                            </select>
+
+                            <small
+                                class="field-error"
+                                id="severityError"
+                            ></small>
+                        </div>
+
+                    </div>
+
+                    <div class="field-group">
+                        <label for="reportLocation">
+                            Location *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="reportLocation"
+                            placeholder="Enter area, city or district"
+                        >
+                        <div class="location-actions">
+                            <button type="button" class="location-button" id="reportLocationButton">
+                                ⌖ Use my current location
+                            </button>
+                            <small class="location-status" id="reportLocationStatus">
+                                Add the city/district or use GPS for an exact map point.
+                            </small>
+                        </div>
+
+                        <small
+                            class="field-error"
+                            id="reportLocationError"
+                        ></small>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="landmark">
+                            Nearby landmark
+                        </label>
+
+                        <input
+                            type="text"
+                            id="landmark"
+                            placeholder="Example: Near Government Hospital"
+                        >
+                    </div>
+
+                    <div class="field-group">
+                        <label for="description">
+                            Description *
+                        </label>
+
+                        <textarea
+                            id="description"
+                            rows="5"
+                            maxlength="500"
+                            placeholder="Describe what happened, who is affected and whether immediate rescue is required"
+                        ></textarea>
+
+                        <div class="field-footer">
+                            <small
+                                class="field-error"
+                                id="descriptionError"
+                            ></small>
+
+                            <span id="descriptionCount">
+                                0 / 500
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <div class="field-group">
+                        <label for="peopleAffected">
+                            Approximate people affected
+                        </label>
+
+                        <input
+                            type="number"
+                            id="peopleAffected"
+                            min="0"
+                            placeholder="Enter an estimated number"
+                        >
+                    </div>
+
+                    <div class="urgent-check">
+
+                        <input
+                            type="checkbox"
+                            id="immediateRescue"
+                        >
+
+                        <label for="immediateRescue">
+                            Immediate rescue assistance is required
+                        </label>
+
+                    </div>
+
+                    <p
+                        id="reportMessage"
+                        class="submission-message"
+                    ></p>
+
+                    <div class="form-actions">
+
+                        <a
+                            href="citizen.html"
+                            class="cancel-button"
+                        >
+                            Cancel
+                        </a>
+
+                        <button
+                            type="submit"
+                            id="reportButton"
+                            class="submit-button"
+                        >
+                            Submit Report
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <aside class="information-card">
+
+                <div class="information-icon">
+                    !
+                </div>
+
+                <h2>Before submitting</h2>
+
+                <p>
+                    Submit only genuine emergency information. Accurate
+                    details help authorities prioritise their response.
+                </p>
+
+                <ul>
+                    <li>
+                        Choose the correct disaster type.
+                    </li>
+
+                    <li>
+                        Enter a clear location and landmark.
+                    </li>
+
+                    <li>
+                        Select severity based on the actual situation.
+                    </li>
+
+                    <li>
+                        Mention whether people require immediate rescue.
+                    </li>
+                </ul>
+
+                <div class="emergency-note">
+                    <strong>Life-threatening emergency?</strong>
+
+                    <p>
+                        Contact your local emergency service immediately
+                        in addition to submitting this report.
+                    </p>
+                </div>
+
+            </aside>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script type="module" src="js/guard.js"></script>
+<script type="module" src="js/report.js"></script>
+
+</body>
+</html>

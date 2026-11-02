@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRCS | Create Account</title>
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body class="auth-screen">
+    <main class="auth-page">
+        <section class="auth-info">
+            <a href="index.html" class="logo">
+                <span>🛡</span> DRCS
+            </a>
+
+            <div class="info-content">
+                <p class="eyebrow">Emergency Response Platform</p>
+
+                <h1>
+                    Together, we respond faster.
+                </h1>
+
+                <p class="description">
+                    Join a connected network of citizens, volunteers,
+                    hospitals and organisations working together during
+                    emergencies.
+                </p>
+
+                <div class="feature-list">
+                    <div class="feature">
+                        <span>✓</span>
+                        <p>Report disasters and request immediate help</p>
+                    </div>
+
+                    <div class="feature">
+                        <span>✓</span>
+                        <p>Coordinate volunteers and available resources</p>
+                    </div>
+
+                    <div class="feature">
+                        <span>✓</span>
+                        <p>Receive real-time emergency updates</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="info-footer">
+                Disaster Resource Coordination System
+            </p>
+        </section>
+
+        <section class="auth-form-section">
+            <div class="auth-card">
+                <div class="card-heading">
+                    <p class="mobile-logo">✦ DRCS</p>
+                    <h2>Create your account</h2>
+                    <p>Enter your details to join the response network.</p>
+                </div>
+
+                <form id="signupForm" novalidate>
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="fullName">Full name</label>
+                            <input
+                                type="text"
+                                id="fullName"
+                                placeholder="Your full name"
+                                autocomplete="name"
+                            >
+                            <small class="error" id="fullNameError"></small>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="signupEmail">Email address</label>
+                            <input
+                                type="email"
+                                id="signupEmail"
+                                placeholder="name@example.com"
+                                autocomplete="email"
+                            >
+                            <small class="error" id="signupEmailError"></small>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="phone">Phone number</label>
+                            <input
+                                type="tel"
+                                id="phone"
+                                placeholder="10-digit mobile number"
+                                maxlength="10"
+                                inputmode="numeric"
+                                autocomplete="tel"
+                            >
+                            <small class="error" id="phoneError"></small>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="location">Location</label>
+                            <input
+                                type="text"
+                                id="location"
+                                placeholder="City or district"
+                            >
+                            <small class="error" id="locationError"></small>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="role">Register as</label>
+                            <select id="role">
+                                <option value="">Select your role</option>
+                                <option value="citizen">Citizen</option>
+                                <option value="volunteer">Volunteer</option>
+                                <option value="ngo">NGO</option>
+                                <option value="hospital">Hospital</option>
+                            </select>
+                            <small class="error" id="roleError"></small>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="signupPassword">Password</label>
+                            <div class="password-box">
+                                <input
+                                    type="password"
+                                    id="signupPassword"
+                                    placeholder="Create password"
+                                    autocomplete="new-password"
+                                >
+                                <button
+                                    type="button"
+                                    class="show-password"
+                                    data-target="signupPassword"
+                                >
+                                    Show
+                                </button>
+                            </div>
+                            <small
+                                class="error"
+                                id="signupPasswordError"
+                            ></small>
+                        </div>
+
+                        <div class="input-group full-width">
+                            <label for="confirmPassword">
+                                Confirm password
+                            </label>
+
+                            <div class="password-box">
+                                <input
+                                    type="password"
+                                    id="confirmPassword"
+                                    placeholder="Enter the password again"
+                                    autocomplete="new-password"
+                                >
+                                <button
+                                    type="button"
+                                    class="show-password"
+                                    data-target="confirmPassword"
+                                >
+                                    Show
+                                </button>
+                            </div>
+
+                            <small
+                                class="error"
+                                id="confirmPasswordError"
+                            ></small>
+                        </div>
+                    </div>
+
+                    <p class="password-hint">
+                        Use 8+ characters with uppercase, lowercase, number
+                        and special character.
+                    </p>
+
+                    <p id="signupMessage" class="form-message"></p>
+
+                    <button
+                        type="submit"
+                        id="signupButton"
+                        class="auth-button"
+                    >
+                        Create Account
+                    </button>
+                </form>
+
+                <p class="switch-page">
+                    Already have an account?
+                    <a href="login.html">Sign in</a>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="js/auth.js"></script>
+</body>
+</html>

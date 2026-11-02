@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRCS | Admin Login</title>
+    <link rel="stylesheet" href="css/admin-auth.css">
+</head>
+<body class="admin-auth-screen">
+
+<div class="auth-page">
+
+    <div class="auth-box">
+
+        <div class="auth-logo">
+            <h1>🛡 DRCS</h1>
+            <p>Administrator Portal</p>
+        </div>
+
+        <div class="auth-heading">
+            <h2>Admin Login</h2>
+            <p>Sign in to access the DRCS control centre</p>
+        </div>
+
+        <form id="adminLoginForm">
+
+            <div class="form-group">
+                <label for="email">Email</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter admin email"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter password"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="auth-button">
+                Login as Administrator
+            </button>
+
+            <p id="errorMessage" class="error-message"></p>
+
+        </form>
+
+        <div class="back-link">
+            <a href="login.html">← Back to User Login</a>
+        </div>
+
+    </div>
+
+</div>
+
+<script type="module" src="js/admin-auth.js"></script>
+
+</body>
+</html>

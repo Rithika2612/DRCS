@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>DRCS | Demo Data Manager</title>
+  <link rel="stylesheet" href="css/seed-data.css">
+</head>
+<body>
+  <main class="seed-shell">
+    <a class="back" href="admin.html">← Back to Admin Dashboard</a>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Administrator utility</p>
+        <h1>Demo Data Manager</h1>
+        <p>Populate DRCS with connected, fictional Tamil Nadu emergency-response records for demonstrations and evaluation.</p>
+      </div>
+      <span class="demo-badge">DEMO ONLY</span>
+    </section>
+    <section class="summary">
+      <article><strong>20</strong><span>Users</span></article>
+      <article><strong>15</strong><span>Disasters</span></article>
+      <article><strong>40</strong><span>Help requests</span></article>
+      <article><strong>25</strong><span>Resources</span></article>
+      <article><strong>18</strong><span>Notifications</span></article>
+      <article><strong>25</strong><span>Other records</span></article>
+    </section>
+    <section class="panel">
+      <h2>Before you begin</h2>
+      <ul>
+        <li>Log in using an Admin account.</li>
+        <li>Publish the included <code>firestore.rules</code> once in Firebase Console.</li>
+        <li>Running the seeder again updates the same demo records; it does not create duplicates.</li>
+        <li>Cleanup removes only records marked <code>demoData: true</code>.</li>
+      </ul>
+      <label class="confirm"><input id="confirmation" type="checkbox"> I understand these are fictional demonstration records.</label>
+      <div class="actions">
+        <button id="seedButton" class="primary" disabled>Generate demo data</button>
+        <button id="clearButton" class="danger" disabled>Remove demo data</button>
+      </div>
+      <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+      <p id="status" class="status" aria-live="polite">Verifying administrator access…</p>
+    </section>
+  </main>
+  <script type="module" src="js/seed-data.js"></script>
+</body>
+</html>

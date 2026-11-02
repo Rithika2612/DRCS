@@ -1,0 +1,48 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn(){ return request.auth != null; }
+    function userData(){ return get(/databases/$(database)/documents/users/$(request.auth.uid)).data; }
+    function roleIs(role){ return signedIn() && userData().role == role; }
+    function isAdmin(){ return signedIn() && (userData().role == "admin" || userData().role == "authority" || userData().role == "Authority"); }
+    function isNgo(){ return roleIs("ngo"); }
+    match /users/{userId} {
+      allow create: if signedIn() && (request.auth.uid == userId || isAdmin());
+      allow read: if signedIn() && (request.auth.uid == userId || isAdmin());
+      allow update: if signedIn() && (request.auth.uid == userId || isAdmin());
+    }
+    match /disasters/{id} { allow create,read,update: if signedIn(); }
+    match /requests/{id} { allow create,read,update: if signedIn(); }
+    match /notifications/{id} { allow create,read,update: if signedIn(); }
+    match /hospitalResources/{hospitalId} {
+      allow read: if signedIn();
+      allow create,update: if signedIn() && (request.auth.uid == hospitalId || isAdmin());
+    }
+    match /resourceRequests/{id} {
+      allow create: if (roleIs("hospital") && request.resource.data.hospitalId == request.auth.uid) || isAdmin();
+      allow read: if signedIn() && (resource.data.hospitalId == request.auth.uid || isAdmin() || (isNgo() && resource.data.status == "approved"));
+      allow update: if isAdmin() || (isNgo() && resource.data.status == "approved" && request.resource.data.status == "fulfilled");
+    }
+    match /resources/{id} {
+      allow read: if signedIn();
+      allow create: if (isNgo() && request.resource.data.ngoId == request.auth.uid) || isAdmin();
+      allow update,delete: if isAdmin() || (isNgo() && resource.data.ngoId == request.auth.uid);
+    }
+    match /distributionPoints/{id} {
+      allow read: if signedIn();
+      allow create: if (isNgo() && request.resource.data.ngoId == request.auth.uid) || isAdmin();
+      allow update,delete: if isAdmin() || (isNgo() && resource.data.ngoId == request.auth.uid);
+    }
+    match /resourceAllocations/{id} {
+      allow read: if signedIn();
+      allow create: if (isNgo() && request.resource.data.ngoId == request.auth.uid) || isAdmin();
+      allow delete: if isAdmin();
+      allow update: if false;
+    }
+    match /hospitalResources/{hospitalId} { allow delete: if isAdmin(); }
+    match /disasters/{id} { allow delete: if isAdmin(); }
+    match /requests/{id} { allow delete: if isAdmin(); }
+    match /notifications/{id} { allow delete: if isAdmin(); }
+    match /resourceRequests/{id} { allow delete: if isAdmin(); }
+  }
+}

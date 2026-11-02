@@ -1,0 +1,95 @@
+@import url("./form.css");
+
+:root {
+    --primary: #8d5267;
+    --primary-dark: #69394b;
+    --secondary: #b77a91;
+}
+
+.dashboard-main {
+    background:
+        radial-gradient(circle at 88% 7%, rgba(231, 202, 212, .58), transparent 27%),
+        linear-gradient(145deg, #fcf8fa, #f6eff2);
+}
+
+.page-header {
+    border-bottom-color: #ead8df;
+}
+
+.page-header .header-label,
+.page-header h1 {
+    color: #69394b;
+}
+
+.form-layout {
+    grid-template-columns: minmax(540px, 1.45fr) minmax(280px, .7fr);
+    gap: 30px;
+    align-items: start;
+}
+
+.form-card {
+    border-top: 5px solid #a96980;
+}
+
+.information-card {
+    border: 1px solid #ead8df;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, .84);
+    box-shadow: 0 18px 48px rgba(105, 57, 75, .09);
+}
+
+.location-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 9px;
+}
+
+.location-button {
+    flex: 0 0 auto;
+    min-height: 38px;
+    padding: 0 13px;
+    border: 1px solid #ddc4cd;
+    border-radius: 10px;
+    color: #75465a;
+    background: #fbf3f6;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.location-button:hover {
+    background: #f4e6eb;
+}
+
+.location-button:disabled {
+    cursor: wait;
+    opacity: .68;
+}
+
+.location-status {
+    color: #7d6d73;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.location-status.success {
+    color: #24734b;
+}
+
+.location-status.error {
+    color: #b42318;
+}
+
+@media (max-width: 1050px) {
+    .form-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 620px) {
+    .location-actions {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

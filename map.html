@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRCS | Live Disaster Map</title>
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+    <link rel="stylesheet" href="css/map.css">
+</head>
+<body class="dashboard-screen role-map">
+<div class="app-shell">
+    <aside class="sidebar">
+        <a class="brand" href="admin.html"><span>🛡</span><div><strong>DRCS</strong><small>Admin Command</small></div></a>
+        <nav>
+            <a href="admin.html">Dashboard</a>
+            <a class="active" href="map.html">Live Disaster Map</a>
+        </nav>
+        <div class="legend">
+            <h2>Map legend</h2>
+            <p><i class="dot disaster"></i>Approved disaster</p>
+            <p><i class="dot request"></i>Help request</p>
+            <p><i class="dot hospital"></i>Hospital</p>
+            <p><i class="dot ngo"></i>Distribution point</p>
+        </div>
+        <button id="logoutButton" class="logout">Log out</button>
+    </aside>
+    <main>
+        <header>
+            <div>
+                <p class="eyebrow">Emergency coordination centre</p>
+                <h1>Live Disaster Map</h1>
+                <p>Operational locations from Firestore, updated in real time.</p>
+            </div>
+            <a class="back-button" href="admin.html">← Dashboard</a>
+        </header>
+        <p id="pageMessage" class="message" aria-live="polite"></p>
+        <section class="stats" aria-label="Map totals">
+            <article><span class="stat-icon disaster">!</span><div><strong id="disasterCount">0</strong><small>Approved disasters</small></div></article>
+            <article><span class="stat-icon request">+</span><div><strong id="requestCount">0</strong><small>Active help requests</small></div></article>
+            <article><span class="stat-icon hospital">H</span><div><strong id="hospitalCount">0</strong><small>Hospitals</small></div></article>
+            <article><span class="stat-icon ngo">N</span><div><strong id="pointCount">0</strong><small>Distribution points</small></div></article>
+        </section>
+        <section class="map-panel">
+            <div class="toolbar">
+                <div class="filter-group">
+                    <label for="typeFilter">Marker type</label>
+                    <select id="typeFilter">
+                        <option value="all">All locations</option>
+                        <option value="disaster">Approved disasters</option>
+                        <option value="request">Help requests</option>
+                        <option value="hospital">Hospitals</option>
+                        <option value="ngo">Distribution points</option>
+                    </select>
+                </div>
+                <div class="filter-group grow">
+                    <label for="searchInput">Search place or name</label>
+                    <input id="searchInput" type="search" placeholder="Example: Chennai, flood, City Hospital">
+                </div>
+                <div class="filter-group">
+                    <label for="statusFilter">Request status</label>
+                    <select id="statusFilter">
+                        <option value="all">All active statuses</option>
+                        <option value="pending">Pending</option>
+                        <option value="approved">Approved</option>
+                        <option value="assigned">Assigned</option>
+                        <option value="accepted">Accepted</option>
+                        <option value="in-progress">In progress</option>
+                    </select>
+                </div>
+                <button id="fitMapButton" class="fit-button">Fit visible markers</button>
+            </div>
+            <div class="map-content">
+                <div id="map" role="application" aria-label="DRCS live locations map"></div>
+                <aside class="location-panel">
+                    <div class="location-heading">
+                        <div><p class="eyebrow">Visible records</p><h2>Locations</h2></div>
+                        <span id="visibleCount">0</span>
+                    </div>
+                    <div id="locationList" class="location-list"></div>
+                    <div id="locationEmpty" class="empty">No records match the selected filters.</div>
+                </aside>
+            </div>
+        </section>
+        <section id="unmappedPanel" class="unmapped-panel hidden">
+            <div>
+                <p class="eyebrow">Location check</p>
+                <h2><span id="unmappedCount">0</span> records could not be placed</h2>
+                <p>Add a clearer city/address or numeric latitude and longitude to these records.</p>
+            </div>
+            <button id="toggleUnmappedButton">Show records</button>
+            <ul id="unmappedList" class="hidden"></ul>
+        </section>
+    </main>
+</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script type="module" src="js/map.js"></script>
+</body>
+</html>

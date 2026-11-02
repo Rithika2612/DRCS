@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap");
+:root{--ink:#201a33;--muted:#6e6880;--line:#e8e2f2;--surface:#fff;--soft:#f8f5fc;--violet:#6941c6;--violet-dark:#4d2c9b;--pink:#d9468f;--blue:#5267d8;--shadow:0 18px 50px rgba(72,44,126,.12);--radius:20px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"DM Sans",sans-serif;color:var(--ink);background:#f8f6fc}
+h1,h2,h3,.brand strong{font-family:"Manrope",sans-serif;letter-spacing:-.025em}
+button,a,input,select,textarea{font:inherit}
+button,a{transition:transform .18s ease,box-shadow .18s ease,background .18s ease,color .18s ease,border-color .18s ease}
+button:not(:disabled):hover,.primary:not(:disabled):hover,.btn-primary:not(:disabled):hover{transform:translateY(-2px)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid rgba(105,65,198,.24);outline-offset:2px}
+input,select,textarea{border:1px solid #ddd4ec!important;border-radius:12px!important;background:#fff!important;color:var(--ink)!important;min-height:46px;font-size:15px!important}
+input:focus,select:focus,textarea:focus{border-color:#8b68d9!important;box-shadow:0 0 0 4px rgba(105,65,198,.1)!important}
+button:disabled{opacity:.55;cursor:not-allowed;transform:none!important}
+
+/* Authentication: blue-violet, never amber. */
+.auth-screen,.admin-auth-screen{min-height:100vh;background:
+radial-gradient(circle at 12% 12%,rgba(217,70,143,.2),transparent 28%),
+radial-gradient(circle at 88% 78%,rgba(82,103,216,.25),transparent 32%),
+linear-gradient(135deg,#1e1535 0%,#32205b 48%,#222e63 100%)!important}
+.auth-page{min-height:100vh;padding:42px clamp(20px,6vw,90px)!important;display:grid!important;grid-template-columns:minmax(320px,1fr) minmax(380px,520px)!important;align-items:center!important;gap:clamp(44px,8vw,120px)!important;max-width:1440px;margin:auto}
+.auth-card,.admin-login-card,.admin-auth-card{background:rgba(255,255,255,.97)!important;border:1px solid rgba(255,255,255,.7)!important;border-radius:26px!important;box-shadow:0 26px 80px rgba(12,8,31,.34)!important;padding:clamp(28px,4vw,46px)!important;width:100%!important;max-width:520px!important;margin:auto!important}
+.auth-card h1,.admin-login-card h1,.admin-auth-card h1{font-size:clamp(30px,3vw,42px)!important;color:#261845!important}
+.auth-card .btn-primary,.auth-card button[type=submit],.admin-login-card button[type=submit],.admin-auth-card button[type=submit]{background:linear-gradient(135deg,#5267d8,#7646c8 58%,#c13f8d)!important;border:0!important;color:#fff!important;box-shadow:0 12px 28px rgba(105,65,198,.28)!important}
+.auth-card a,.admin-login-card a,.admin-auth-card a{color:#6540ba!important}
+.admin-link,.admin-login-link{margin-top:24px!important;padding-top:22px!important;border-top:1px solid var(--line)!important}
+
+/* Shared dashboard frame. NGO and Hospital intentionally remain untouched. */
+.dashboard-screen:not(.role-hospital):not(.role-ngo){--role:#6941c6;--role2:#d9468f;--role-dark:#281a46;background:
+radial-gradient(circle at 78% 0,rgba(217,70,143,.1),transparent 27%),#f8f6fc!important}
+.role-citizen{--role:#b24778!important;--role2:#7251b5!important;--role-dark:#43203a!important}
+.role-volunteer{--role:#7a3f9d!important;--role2:#d05291!important;--role-dark:#32183f!important}
+.role-admin{--role:#5b3d91!important;--role2:#cc4d91!important;--role-dark:#27183f!important}
+.role-map{--role:#5461c8!important;--role2:#b84291!important;--role-dark:#202751!important}
+.role-reports{--role:#703fa1!important;--role2:#d44a8b!important;--role-dark:#2f1748!important}
+.dashboard-screen:not(.role-hospital):not(.role-ngo) .sidebar{background:
+linear-gradient(165deg,var(--role-dark),color-mix(in srgb,var(--role-dark),#111 24%))!important;color:#fff!important;border:0!important;box-shadow:12px 0 38px rgba(34,19,61,.16)!important}
+.dashboard-screen:not(.role-hospital):not(.role-ngo) .sidebar::before{content:"";position:absolute;inset:0 0 auto;height:190px;background:radial-gradient(circle at 15% 20%,color-mix(in srgb,var(--role2),transparent 30%),transparent 62%);pointer-events:none}
+.dashboard-screen:not(.role-hospital):not(.role-ngo) .sidebar .brand{position:relative;color:#fff!important}
+.dashboard-screen:not(.role-hospital):not(.role-ngo) .sidebar a{color:rgba(255,255,255,.73)!important;border-radius:12px!important}
+.dashboard-screen:not(.role-hospital):not(.role-ngo) .sidebar nav a:hover{background:rgba(255,255,255,.09)!important;color:#fff!important}
+.dashboard-screen:not(.role-hospital):not(.role-ngo) .sidebar nav a.active{background:linear-gradient(100deg,rgba(255,255,255,.2),rgba(255,255,255,.1))!important;color:#fff!important;box-shadow:inset 3px 0 0 var(--role2)!important}
+.dashboard-screen:not(.role-hospital):not(.role-ngo) main{background:transparent!important}
+.dashboard-screen:not(.role-hospital):not(.role-ngo) main>header{background:linear-gradient(115deg,#fff 0%,color-mix(in srgb,var(--role),#fff 93%) 100%)!important;border:1px solid var(--line)!important;border-radius:var(--radius)!important;box-shadow:0 10px 35px rgba(66,42,102,.07)!important}
+.dashboard-screen:not(.role-hospital):not(.role-ngo) main>header h1{font-size:clamp(29px,3vw,42px)!important;color:var(--role-dark)!important}
+.dashboard-screen:not(.role-hospital):not(.role-ngo) .eyebrow{color:var(--role)!important;font-weight:800!important;letter-spacing:.1em!important}
+.dashboard-screen:not(.role-hospital):not(.role-ngo) .panel,
+.dashboard-screen:not(.role-hospital):not(.role-ngo) .card,
+.dashboard-screen:not(.role-hospital):not(.role-ngo) .stat-card,
+.dashboard-screen:not(.role-hospital):not(.role-ngo) .stats article,
+.dashboard-screen:not(.role-hospital):not(.role-ngo) .map-panel,
+.dashboard-screen:not(.role-hospital):not(.role-ngo) .filters{background:#fff!important;border:1px solid var(--line)!important;border-radius:var(--radius)!important;box-shadow:0 12px 38px rgba(70,43,107,.08)!important}
+.dashboard-screen:not(.role-hospital):not(.role-ngo) .primary,
+.dashboard-screen:not(.role-hospital):not(.role-ngo) .btn-primary,
+.dashboard-screen:not(.role-hospital):not(.role-ngo) button[type=submit]{background:linear-gradient(135deg,var(--role),var(--role2))!important;color:#fff!important;border:0!important;box-shadow:0 10px 24px color-mix(in srgb,var(--role),transparent 72%)!important}
+.dashboard-screen:not(.role-hospital):not(.role-ngo) .badge{border-radius:999px!important;font-weight:700!important}
+.dashboard-screen:not(.role-hospital):not(.role-ngo) .status-pending,
+.dashboard-screen:not(.role-hospital):not(.role-ngo) .priority-medium,
+.dashboard-screen:not(.role-hospital):not(.role-ngo) .severity-medium{background:#f3e8ff!important;color:#74339c!important}
+.dashboard-screen:not(.role-hospital):not(.role-ngo) .priority-high,
+.dashboard-screen:not(.role-hospital):not(.role-ngo) .severity-high{background:#fce7f3!important;color:#a52667!important}
+.dashboard-screen:not(.role-hospital):not(.role-ngo) .status-assigned,
+.dashboard-screen:not(.role-hospital):not(.role-ngo) .status-accepted,
+.dashboard-screen:not(.role-hospital):not(.role-ngo) .status-in-progress,
+.dashboard-screen:not(.role-hospital):not(.role-ngo) .status-approved{background:#ece9ff!important;color:#5140ad!important}
+.dashboard-screen:not(.role-hospital):not(.role-ngo) table thead{background:color-mix(in srgb,var(--role),#fff 92%)!important}
+.dashboard-screen:not(.role-hospital):not(.role-ngo) table th{color:var(--role-dark)!important}
+
+/* Map */
+.role-map .app-shell{min-height:100vh}
+.role-map main{padding:28px clamp(20px,3vw,44px)!important;min-width:0}
+.role-map .stats{grid-template-columns:repeat(4,minmax(150px,1fr))!important}
+.role-map .map-panel{overflow:hidden}
+.role-map .toolbar{background:linear-gradient(100deg,#f8f5ff,#fff7fc)!important;border-bottom:1px solid var(--line)!important}
+.role-map .map-content{grid-template-columns:minmax(0,1fr) 330px!important}
+.role-map #map{height:clamp(480px,66vh,720px)!important;min-height:480px;background:#ece8f4!important}
+.role-map .location-panel{background:#fcfaff!important;border-left:1px solid var(--line)!important}
+.map-marker.request{background:#d9468f!important}
+.map-marker.hospital{background:#5267d8!important}
+.map-marker.ngo{background:#7950b7!important}
+.role-map .dot.request,.role-map .tag.request,.role-map .stat-icon.request{background:#d9468f!important}
+.role-map .dot.hospital,.role-map .tag.hospital,.role-map .stat-icon.hospital{background:#5267d8!important}
+.role-map .dot.ngo,.role-map .tag.ngo,.role-map .stat-icon.ngo{background:#7950b7!important}
+.role-map .message:not(:empty){background:#f3e8ff!important;color:#65328a!important;border-color:#d8b8ed!important}
+.role-map .unmapped-panel{background:#fbf7ff!important;border-color:#dcc8ee!important}
+.role-map .unmapped-panel button{border-color:#bda0d8!important;color:#65328a!important}
+.role-map .location-card:hover{border-color:#8c69d4!important;background:#faf7ff!important}
+
+/* Reports */
+.role-reports .layout{min-height:100vh}
+.role-reports main{padding:28px clamp(20px,3vw,44px)!important;min-width:0}
+.role-reports .filters{padding:20px!important;display:grid!important;grid-template-columns:repeat(3,minmax(150px,1fr)) auto!important;align-items:end!important}
+.role-reports .stats{grid-template-columns:repeat(3,minmax(180px,1fr))!important}
+.role-reports .stats article{position:relative;overflow:hidden}
+.role-reports .stats article::after{content:"";position:absolute;width:78px;height:78px;border-radius:50%;right:-23px;top:-26px;background:linear-gradient(135deg,rgba(112,63,161,.12),rgba(212,74,139,.18))}
+.role-reports .charts{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.chart-fallback{height:100%;display:grid;place-content:center;text-align:center;color:var(--muted);padding:24px}
+.chart-fallback strong,.chart-fallback span{display:block}.chart-fallback span{margin-top:8px;line-height:1.7}
+
+/* Volunteer typography was undersized in the legacy file. */
+.role-volunteer{font-size:16px!important}
+.role-volunteer .brand strong{font-size:20px!important}.role-volunteer .brand small{font-size:12px!important}
+.role-volunteer .nav-link{font-size:14px!important;padding:12px 14px!important}
+.role-volunteer .topbar h1{font-size:clamp(29px,3vw,40px)!important}
+.role-volunteer .topbar p,.role-volunteer .hero-panel p{font-size:15px!important}
+.role-volunteer .eyebrow,.role-volunteer .live-label{font-size:12px!important}
+.role-volunteer .hero-panel h2{font-size:26px!important}.role-volunteer .hero-button{font-size:14px!important}
+.role-volunteer .stat-card small{font-size:13px!important}.role-volunteer .stat-card p{font-size:12px!important}
+.role-volunteer .panel-copy,.role-volunteer .task-description{font-size:14px!important}
+.role-volunteer .badge,.role-volunteer .availability-badge{font-size:11px!important}
+.role-volunteer .task-card h3{font-size:15px!important}.role-volunteer .task-card p{font-size:13px!important}
+.role-volunteer .task-card-meta,.role-volunteer .hint,.role-volunteer .profile-note{font-size:12px!important}
+.role-volunteer .primary-button{font-size:14px!important}.role-volunteer .secondary-button,.role-volunteer .small-button,.role-volunteer .text-button{font-size:12px!important}
+.role-volunteer .profile-form label,.role-volunteer .availability-panel label{font-size:13px!important}
+.role-volunteer .profile-form input,.role-volunteer .availability-panel select{font-size:14px!important}
+.role-volunteer .notification-item h3{font-size:14px!important}.role-volunteer .notification-item p{font-size:13px!important}.role-volunteer .notification-item time{font-size:11px!important}
+
+/* Citizen forms and small pages */
+.role-citizen-form .dashboard-main,.role-citizen .dashboard-main{min-width:0!important}
+.role-citizen-form .form-card,.role-citizen .request-form{max-width:920px!important;margin-inline:auto!important}
+
+@media(max-width:1000px){
+  .auth-page{grid-template-columns:1fr!important;max-width:640px!important;gap:24px!important}
+  .auth-intro{display:none!important}
+  .role-map .stats,.role-reports .stats{grid-template-columns:repeat(2,minmax(150px,1fr))!important}
+  .role-map .map-content{grid-template-columns:1fr!important}
+  .role-map .location-panel{border-left:0!important;border-top:1px solid var(--line)!important;max-height:360px}
+  .role-reports .filters{grid-template-columns:repeat(2,minmax(150px,1fr))!important}
+}
+@media(max-width:720px){
+  .auth-page{padding:24px 16px!important}
+  .auth-card,.admin-login-card,.admin-auth-card{padding:26px 20px!important;border-radius:20px!important}
+  .role-map main,.role-reports main{padding:18px 14px!important}
+  .role-map .stats,.role-reports .stats,.role-reports .charts,.role-reports .filters{grid-template-columns:1fr!important}
+  .role-map #map{height:440px!important;min-height:440px}
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRCS | Request Help</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/request.css">
+</head>
+<body class="dashboard-screen role-citizen role-citizen-form">
+<div class="dashboard-layout">
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <span>🛡</span>
+            <div><h2>DRCS</h2><p>Citizen Portal</p></div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="citizen.html" class="nav-link"><span>⌂</span>Dashboard</a>
+            <a href="report.html" class="nav-link"><span>📢</span>Report Disaster</a>
+            <a href="request.html" class="nav-link active"><span>🆘</span>Request Help</a>
+            <a href="my-requests.html" class="nav-link"><span>📋</span>My Requests</a>
+            <a href="citizen.html#activity" class="nav-link"><span>◉</span>Notifications</a>
+            <a href="citizen.html#profile" class="nav-link"><span>♙</span>Profile</a>
+        </nav>
+        <button type="button" id="logoutButton" class="logout-button">Logout</button>
+    </aside>
+    <main class="dashboard-main request-page-main">
+        <header class="page-header request-page-header">
+            <div>
+                <p class="header-label">Citizen Assistance</p>
+                <h1>Request emergency help</h1>
+                <p>Share accurate details so the response team can understand your need and act quickly.</p>
+            </div>
+        </header>
+        <div class="form-layout">
+<section class="intro-panel">
+<div class="eyebrow">Citizen Assistance</div>
+<h1>Request emergency help</h1>
+<p>
+                    Submit the details clearly so the response team can understand
+                    your need and act quickly.
+                </p>
+<div class="info-card">
+<h2>Before you submit</h2>
+<ul>
+<li>Choose the most suitable help type.</li>
+<li>Use a reachable mobile number.</li>
+<li>Add a clear location and nearby landmark.</li>
+<li>Mark immediate assistance only for urgent situations.</li>
+</ul>
+</div>
+<div class="emergency-note">
+<strong>Life-threatening emergency?</strong>
+                    Contact the local emergency service immediately while also submitting this request.
+                </div>
+</section>
+<section class="form-card">
+<div class="form-heading">
+<div>
+<span class="section-label">New request</span>
+<h2>Help request details</h2>
+</div>
+<span class="required-note">* Required fields</span>
+</div>
+<form id="requestForm" novalidate="">
+<div class="form-grid">
+<div class="field-group">
+<label for="requestType">Help type *</label>
+<select id="requestType" name="requestType">
+<option value="">Select help type</option>
+<option value="food">Food</option>
+<option value="water">Water</option>
+<option value="medical">Medical assistance</option>
+<option value="rescue">Rescue</option>
+<option value="shelter">Shelter</option>
+<option value="other">Other</option>
+</select>
+<small class="field-error" id="requestTypeError"></small>
+</div>
+<div class="field-group">
+<label for="priority">Priority *</label>
+<select id="priority" name="priority">
+<option value="">Select priority</option>
+<option value="low">Low</option>
+<option value="medium">Medium</option>
+<option value="high">High</option>
+<option value="critical">Critical</option>
+</select>
+<small class="field-error" id="priorityError"></small>
+</div>
+<div class="field-group">
+<label for="peopleCount">Number of people *</label>
+<input id="peopleCount" max="10000" min="1" name="peopleCount" placeholder="Example: 4" type="number"/>
+<small class="field-error" id="peopleCountError"></small>
+</div>
+<div class="field-group">
+<label for="contact">Contact number *</label>
+<input id="contact" inputmode="numeric" maxlength="10" name="contact" placeholder="10-digit mobile number" type="tel"/>
+<small class="field-error" id="contactError"></small>
+</div>
+<div class="field-group full-width">
+<label for="location">Location *</label>
+<input id="location" maxlength="120" name="location" placeholder="Area, city or district" type="text"/>
+<div class="location-actions">
+<button type="button" class="location-button" id="requestLocationButton">⌖ Use my current location</button>
+<small class="location-status" id="requestLocationStatus">Add the city/district or use GPS for an exact map point.</small>
+</div>
+<small class="field-error" id="locationError"></small>
+</div>
+<div class="field-group full-width">
+<label for="landmark">Nearby landmark</label>
+<input id="landmark" maxlength="120" name="landmark" placeholder="Example: Near railway station" type="text"/>
+<small class="field-error" id="landmarkError"></small>
+</div>
+<div class="field-group full-width">
+<label for="description">Describe the help needed *</label>
+<textarea id="description" maxlength="600" name="description" placeholder="Explain the situation, affected people and the assistance required." rows="5"></textarea>
+<div class="field-meta">
+<small class="field-error" id="descriptionError"></small>
+<small id="descriptionCount">0 / 600</small>
+</div>
+</div>
+</div>
+<label class="check-card" for="immediate">
+<input id="immediate" name="immediate" type="checkbox"/>
+<span aria-hidden="true" class="custom-check"></span>
+<span>
+<strong>Immediate assistance required</strong>
+<small>Use this only when delay may seriously increase risk.</small>
+</span>
+</label>
+<div aria-live="polite" class="form-message" id="requestMessage" role="status"></div>
+<div class="form-actions">
+<a class="secondary-button" href="citizen.html">Cancel</a>
+<button class="primary-button" id="submitRequestButton" type="submit">
+                            Submit Request
+                        </button>
+</div>
+</form>
+</section>
+</div>
+    </main>
+</div>
+<script type="module" src="js/guard.js"></script>
+<script type="module" src="js/request.js"></script>
+</body>
+</html>

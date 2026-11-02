@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRCS | Hospital Dashboard</title>
+    <link rel="stylesheet" href="css/hospital.css">
+    <link rel="stylesheet" href="css/section-nav.css">
+</head>
+<body class="role-hospital">
+<div class="app-shell">
+    <aside class="sidebar">
+        <a class="brand" href="hospital.html"><span class="brand-mark">🛡</span><span><strong>DRCS</strong><small>Hospital Portal</small></span></a>
+        <nav>
+            <a class="nav-link active" href="#overview">⌂ <span>Overview</span></a>
+            <a class="nav-link" href="#capacity">▦ <span>Capacity</span></a>
+            <a class="nav-link" href="#emergency">⚑ <span>Resource request</span></a>
+            <a class="nav-link" href="#blood">✚ <span>Blood inventory</span></a>
+            <a class="nav-link" href="#profile">♙ <span>Profile</span></a>
+        </nav>
+        <div class="live-status"><i></i><span><small>System status</small><strong>Live updates active</strong></span></div>
+        <button id="logoutButton" class="logout-button" type="button">Log out</button>
+    </aside>
+
+    <main>
+        <header class="topbar">
+            <div><p class="eyebrow">Medical response centre</p><h1>Welcome, <span id="hospitalName">Hospital</span></h1><p>Keep emergency capacity accurate for administrators and response teams.</p></div>
+            <div class="profile-chip"><span id="profileInitial">H</span><div><strong id="profileName">Hospital</strong><small>Healthcare Partner</small></div></div>
+        </header>
+        <div id="pageMessage" class="page-message" role="status" aria-live="polite"></div>
+
+        <section id="overview" class="hero">
+            <div><span class="live-label"><i></i> Connected to DRCS</span><h2>Emergency readiness at a glance</h2><p>Changes are saved to Firestore and become visible across the coordination network.</p></div>
+            <button id="openCapacityButton" class="hero-button" type="button">Update capacity →</button>
+        </section>
+
+        <section class="stats-grid">
+            <article><span class="stat-icon blue">▤</span><div><small>Available beds</small><strong id="availableBedsStat">0</strong><p id="totalBedsText">of 0 total beds</p></div></article>
+            <article><span class="stat-icon violet">✚</span><div><small>Available ICU</small><strong id="availableIcuStat">0</strong><p id="totalIcuText">of 0 ICU beds</p></div></article>
+            <article><span class="stat-icon green">◎</span><div><small>Oxygen units</small><strong id="oxygenStat">0</strong><p>Currently available</p></div></article>
+            <article><span class="stat-icon amber">➜</span><div><small>Ambulances</small><strong id="ambulanceStat">0</strong><p>Ready for dispatch</p></div></article>
+        </section>
+
+        <section class="content-grid">
+            <article id="capacity" class="panel capacity-panel">
+                <div class="panel-heading"><div><p class="eyebrow">Live availability</p><h2>Hospital capacity</h2></div><span id="lastUpdated">Not updated yet</span></div>
+                <form id="capacityForm" class="field-grid">
+                    <label>Total beds<input id="totalBeds" type="number" min="0" required></label>
+                    <label>Available beds<input id="availableBeds" type="number" min="0" required></label>
+                    <label>Total ICU beds<input id="totalIcu" type="number" min="0" required></label>
+                    <label>Available ICU beds<input id="availableIcu" type="number" min="0" required></label>
+                    <label>Oxygen units<input id="oxygenUnits" type="number" min="0" required></label>
+                    <label>Available ambulances<input id="ambulances" type="number" min="0" required></label>
+                    <button id="saveCapacityButton" class="primary-button wide" type="submit">Save capacity update</button>
+                </form>
+            </article>
+
+            <article id="emergency" class="panel request-panel">
+                <div class="panel-heading"><div><p class="eyebrow">Urgent requirement</p><h2>Request resources</h2></div><span class="alert-mark">!</span></div>
+                <p>Inform administrators when critical medical supplies or assistance are needed.</p>
+                <form id="resourceRequestForm">
+                    <label>Resource type<select id="resourceType" required><option value="">Select resource</option><option>Oxygen</option><option>Blood</option><option>Medicine</option><option>Ambulance</option><option>Medical staff</option><option>Equipment</option></select></label>
+                    <div class="two-fields"><label>Quantity<input id="resourceQuantity" type="number" min="1" required></label><label>Priority<select id="resourcePriority" required><option value="medium">Medium</option><option value="high">High</option><option value="critical">Critical</option></select></label></div>
+                    <label>Details<textarea id="resourceDetails" rows="4" maxlength="500" placeholder="Describe the requirement and delivery instructions" required></textarea></label>
+                    <button id="sendRequestButton" class="danger-button" type="submit">Send emergency request</button>
+                </form>
+            </article>
+        </section>
+
+        <section id="blood" class="panel">
+            <div class="panel-heading"><div><p class="eyebrow">Transfusion readiness</p><h2>Blood inventory</h2></div><span class="panel-note">Units currently available</span></div>
+            <form id="bloodForm">
+                <div id="bloodGrid" class="blood-grid"></div>
+                <button id="saveBloodButton" class="primary-button" type="submit">Save blood inventory</button>
+            </form>
+        </section>
+
+        <section id="profile" class="panel">
+            <div class="panel-heading"><div><p class="eyebrow">Organisation details</p><h2>Hospital profile</h2></div><span class="panel-note">Used by response teams</span></div>
+            <form id="profileForm" class="field-grid profile-form">
+                <label>Hospital name<input id="profileHospitalName" type="text" maxlength="100" required></label>
+                <label>Registration number<input id="registrationNumber" type="text" maxlength="60"></label>
+                <label>Contact number<input id="phone" type="tel" maxlength="15" required></label>
+                <label>Emergency number<input id="emergencyPhone" type="tel" maxlength="15"></label>
+                <label class="wide">Address<textarea id="address" rows="3" maxlength="250" required></textarea></label>
+                <label>City<input id="city" type="text" maxlength="80"></label>
+                <label>Pincode<input id="pincode" type="text" maxlength="10"></label>
+                <button id="saveProfileButton" class="primary-button wide" type="submit">Save hospital profile</button>
+            </form>
+        </section>
+    </main>
+</div>
+<script type="module" src="js/hospital.js"></script>
+<script src="js/dashboard-nav.js"></script>
+</body>
+</html>

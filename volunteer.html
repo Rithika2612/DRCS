@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRCS | Volunteer Dashboard</title>
+    <link rel="stylesheet" href="css/volunteer.css">
+</head>
+<body class="dashboard-screen role-volunteer">
+<div class="app-shell">
+    <aside class="sidebar">
+        <a class="brand" href="volunteer.html" aria-label="DRCS Volunteer home">
+            <span class="brand-mark">🛡</span>
+            <span><strong>DRCS</strong><small>Volunteer Portal</small></span>
+        </a>
+        <nav class="side-nav" aria-label="Volunteer navigation">
+            <a class="nav-link" href="#overview"><span>⌂</span>Overview</a>
+            <a class="nav-link" href="#tasks"><span>✓</span>My Tasks</a>
+            <a class="nav-link" href="#notifications"><span>◉</span>Notifications <b id="navUnreadCount" class="nav-count hidden">0</b></a>
+            <a class="nav-link" href="#availability"><span>◎</span>Availability</a>
+            <a class="nav-link" href="#profile"><span>♙</span>Profile</a>
+        </nav>
+        <div class="sidebar-status">
+            <span id="sidebarStatusDot" class="status-dot"></span>
+            <div><small>Current status</small><strong id="sidebarStatus">Checking...</strong></div>
+        </div>
+        <button id="logoutButton" class="logout-button" type="button">Log out</button>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">Volunteer command centre</p>
+                <h1>Welcome, <span id="volunteerName">Volunteer</span></h1>
+                <p>View assignments, update progress and stay ready for emergencies.</p>
+            </div>
+            <div class="profile-chip">
+                <span id="profileInitial" class="profile-avatar">V</span>
+                <span><strong id="profileName">Volunteer</strong><small>Response Volunteer</small></span>
+            </div>
+        </header>
+
+        <div id="pageMessage" class="page-message" role="status" aria-live="polite"></div>
+
+        <section id="overview" class="hero-panel">
+            <div>
+                <span class="live-label"><i></i> Live response network</span>
+                <h2 id="heroTitle">Ready to help your community?</h2>
+                <p id="heroDescription">Keep your availability updated so the administrator can assign the right emergency task to you.</p>
+            </div>
+            <a href="#tasks" class="hero-button">View assignments <span>→</span></a>
+        </section>
+
+        <section class="stats-grid" aria-label="Volunteer task summary">
+            <article class="stat-card">
+                <span class="stat-icon assigned-icon">⌁</span>
+                <div><small>Assigned</small><strong id="assignedCount">0</strong><p>Waiting for acceptance</p></div>
+            </article>
+            <article class="stat-card">
+                <span class="stat-icon progress-icon">↻</span>
+                <div><small>Active tasks</small><strong id="activeCount">0</strong><p>Accepted or in progress</p></div>
+            </article>
+            <article class="stat-card">
+                <span class="stat-icon complete-icon">✓</span>
+                <div><small>Completed</small><strong id="completedCount">0</strong><p>Total resolved tasks</p></div>
+            </article>
+            <article class="stat-card">
+                <span class="stat-icon notice-icon">◉</span>
+                <div><small>Unread alerts</small><strong id="unreadCount">0</strong><p>New notifications</p></div>
+            </article>
+        </section>
+
+        <section class="content-grid">
+            <div class="left-column">
+                <article class="panel active-panel">
+                    <div class="panel-heading">
+                        <div><p class="eyebrow">Priority focus</p><h2>Current assignment</h2></div>
+                        <span id="activeTaskStatus" class="badge neutral-badge">No active task</span>
+                    </div>
+                    <div id="activeTaskContent" class="empty-state">
+                        <span>◇</span><h3>No active assignment</h3>
+                        <p>Your next assigned request will appear here automatically.</p>
+                    </div>
+                </article>
+
+                <article id="tasks" class="panel">
+                    <div class="panel-heading task-heading">
+                        <div><p class="eyebrow">Response queue</p><h2>My tasks</h2></div>
+                        <select id="taskFilter" aria-label="Filter tasks by status">
+                            <option value="active">Active tasks</option>
+                            <option value="all">All tasks</option>
+                            <option value="assigned">Assigned</option>
+                            <option value="accepted">Accepted</option>
+                            <option value="in-progress">In progress</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                    <div id="taskList" class="task-list">
+                        <div class="loading-state"><span class="spinner"></span><p>Loading your assignments...</p></div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="right-column">
+                <article id="availability" class="panel availability-panel">
+                    <div class="panel-heading">
+                        <div><p class="eyebrow">Response status</p><h2>Availability</h2></div>
+                        <span id="availabilityBadge" class="availability-badge">Checking</span>
+                    </div>
+                    <p class="panel-copy">Choose whether administrators can assign a new request to you.</p>
+                    <label for="availabilitySelect">Set your status</label>
+                    <select id="availabilitySelect">
+                        <option value="available">Available</option>
+                        <option value="offline">Offline</option>
+                    </select>
+                    <button id="saveAvailabilityButton" class="primary-button" type="button">Update availability</button>
+                    <p id="availabilityHint" class="hint">Status updates are saved instantly in Firestore.</p>
+                </article>
+
+                <article id="notifications" class="panel">
+                    <div class="panel-heading">
+                        <div><p class="eyebrow">Updates</p><h2>Notifications</h2></div>
+                        <button id="markAllReadButton" class="text-button" type="button">Mark all read</button>
+                    </div>
+                    <div id="notificationList" class="notification-list">
+                        <div class="loading-state compact"><span class="spinner"></span><p>Loading alerts...</p></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="profile" class="panel profile-panel">
+            <div class="panel-heading">
+                <div><p class="eyebrow">Volunteer details</p><h2>Profile</h2></div>
+                <span class="profile-note">Keep contact information current</span>
+            </div>
+            <form id="profileForm" class="profile-form">
+                <label>Full name<input id="profileNameInput" name="name" type="text" maxlength="70" required></label>
+                <label>Phone number<input id="profilePhoneInput" name="phone" type="tel" maxlength="15" required></label>
+                <label>Location<input id="profileLocationInput" name="location" type="text" maxlength="120"></label>
+                <label>Skills<input id="profileSkillsInput" name="skills" type="text" maxlength="180" placeholder="First aid, driving, rescue"></label>
+                <label>Blood group<input id="profileBloodGroupInput" name="bloodGroup" type="text" maxlength="5" placeholder="O+"></label>
+                <label>Emergency contact<input id="profileEmergencyInput" name="emergencyContact" type="tel" maxlength="15"></label>
+                <button id="saveProfileButton" class="primary-button profile-save" type="submit">Save profile</button>
+            </form>
+        </section>
+    </main>
+</div>
+
+<div id="taskModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modalTaskTitle">
+    <article class="modal-card">
+        <header class="modal-header">
+            <div><p class="eyebrow">Assignment details</p><h2 id="modalTaskTitle">Help request</h2></div>
+            <button id="closeTaskModal" class="modal-close" type="button" aria-label="Close task details">×</button>
+        </header>
+        <div class="modal-body">
+            <div class="detail-grid">
+                <div><small>Status</small><strong id="modalStatus">—</strong></div>
+                <div><small>Priority</small><strong id="modalPriority">—</strong></div>
+                <div><small>Citizen</small><strong id="modalCitizen">—</strong></div>
+                <div><small>Contact</small><strong id="modalContact">—</strong></div>
+                <div class="wide"><small>Location</small><strong id="modalLocation">—</strong></div>
+                <div class="wide"><small>Description</small><p id="modalDescription">—</p></div>
+            </div>
+        </div>
+        <footer class="modal-footer">
+            <button id="modalCloseButton" class="secondary-button" type="button">Close</button>
+            <button id="modalTaskAction" class="primary-button hidden" type="button">Update task</button>
+        </footer>
+    </article>
+</div>
+
+<script type="module" src="js/volunteer.js"></script>
+<script src="js/dashboard-nav.js"></script>
+</body>
+</html>

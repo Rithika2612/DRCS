@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>DRCS | Login</title>
+
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+
+<body class="auth-screen">
+
+<main class="auth-page">
+
+    <section class="auth-info login-info">
+
+        <a href="index.html" class="logo">
+            <span>🛡</span>
+            DRCS
+        </a>
+
+        <div class="info-content">
+
+            <p class="eyebrow">
+                Disaster Response Network
+            </p>
+
+            <h1>
+                Welcome back.
+            </h1>
+
+            <p class="description">
+                Access your dashboard and continue coordinating
+                emergency assistance, resources and response activities.
+            </p>
+
+            <div class="login-feature-grid">
+
+                <article class="login-feature-card">
+
+                    <div class="feature-icon">
+                        01
+                    </div>
+
+                    <div>
+                        <h3>Emergency coordination</h3>
+
+                        <p>
+                            Access disaster reports and active response
+                            information from one place.
+                        </p>
+                    </div>
+
+                </article>
+
+                <article class="login-feature-card">
+
+                    <div class="feature-icon">
+                        02
+                    </div>
+
+                    <div>
+                        <h3>Role-based dashboard</h3>
+
+                        <p>
+                            Continue with tools designed for your assigned
+                            DRCS role.
+                        </p>
+                    </div>
+
+                </article>
+
+                <article class="login-feature-card">
+
+                    <div class="feature-icon">
+                        03
+                    </div>
+
+                    <div>
+                        <h3>Status updates</h3>
+
+                        <p>
+                            Track requests, tasks and important emergency
+                            notifications.
+                        </p>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+        <p class="info-footer">
+            Disaster Resource Coordination System
+        </p>
+
+    </section>
+
+    <section class="auth-form-section">
+
+        <div class="auth-card login-card">
+
+            <div class="card-heading">
+
+                <p class="mobile-logo">
+                    ✦ DRCS
+                </p>
+
+                <p class="form-label">
+                    Secure access
+                </p>
+
+                <h2>
+                    Sign in to your account
+                </h2>
+
+                <p>
+                    Enter your registered email and password.
+                </p>
+
+            </div>
+
+            <form id="loginForm" novalidate>
+
+                <div class="input-group">
+
+                    <label for="loginEmail">
+                        Email address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="name@example.com"
+                        autocomplete="email"
+                    >
+
+                    <small
+                        class="error"
+                        id="loginEmailError"
+                    ></small>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label for="loginPassword">
+                        Password
+                    </label>
+
+                    <div class="password-box">
+
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                        >
+
+                        <button
+                            type="button"
+                            class="show-password"
+                            data-target="loginPassword"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
+                    <small
+                        class="error"
+                        id="loginPasswordError"
+                    ></small>
+
+                </div>
+
+                <div class="login-options">
+
+                    <label class="remember-box">
+
+                        <input
+                            type="checkbox"
+                            id="rememberMe"
+                        >
+
+                        <span>Remember me</span>
+
+                    </label>
+
+                    <button
+                        type="button"
+                        id="forgotPassword"
+                        class="forgot-button"
+                    >
+                        Forgot password?
+                    </button>
+
+                </div>
+
+                <p
+                    id="loginMessage"
+                    class="form-message"
+                ></p>
+
+                <button
+                    type="submit"
+                    id="loginButton"
+                    class="auth-button"
+                >
+                    Sign In
+                </button>
+<br><br>
+               <div class="admin-link">
+    <a href="admin-login.html">
+        Administrator Login →
+    </a>
+</div> 
+            </form>
+
+            <div class="secure-note">
+                <span>✓</span>
+
+                <p>
+                    Your account is protected using Firebase
+                    Authentication.
+                </p>
+            </div>
+
+            <p class="switch-page">
+                New to DRCS?
+
+                <a href="signup.html">
+                    Create an account
+                </a>
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script type="module" src="js/auth.js"></script>
+
+</body>
+</html>

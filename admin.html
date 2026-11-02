@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRCS | Admin Dashboard</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body class="dashboard-screen role-admin">
+    <div class="layout">
+        <aside class="sidebar">
+            <a class="brand" href="admin.html"><span>🛡</span>
+                <div><strong>DRCS</strong><small>Admin Command</small></div>
+            </a>
+            <nav>
+                <a href="#overview" data-no-active="true">Dashboard</a>
+                <a href="#resourceRequests">Hospital Requests</a>
+                <a href="#disasters">Disasters</a>
+                <a href="#helpRequests">Help Requests</a>
+                <a href="map.html">Live Disaster Map</a>
+                <a href="reports.html">Reports &amp; Analytics</a>
+
+            </nav>
+            <button id="logoutButton" class="logout">Log out</button>
+        </aside>
+        <main>
+            <header>
+                <div>
+                    <p class="eyebrow">Emergency coordination centre</p>
+                    <h1>Welcome, <span id="adminName">Administrator</span></h1>
+                    <p>Live operational overview of DRCS.</p>
+                </div>
+                <div class="profile"><span id="profileInitial">A</span>
+                    <div><strong id="profileName">Administrator</strong><small>Last updated <span
+                                id="lastUpdated">—</span></small></div>
+                </div>
+            </header>
+            <p id="pageMessage" class="message" aria-live="polite"></p>
+            <section id="overview" class="stats">
+                <article><span>Disasters</span><strong id="disasterCount">0</strong><small id="pendingDisasterText">0
+                        pending review</small></article>
+                <article><span>Help requests</span><strong id="requestCount">0</strong><small id="totalRequestText">0
+                        total requests</small></article>
+                <article><span>Hospital requests</span><strong id="resourceRequestCount">0</strong><small>Pending
+                        decisions</small></article>
+                <article><span>Citizens</span><strong id="citizenCount">0</strong><small>Registered users</small>
+                </article>
+                <article><span>Volunteers</span><strong id="volunteerCount">0</strong><small
+                        id="availableVolunteerText">0 available</small></article>
+                <article><span>Resources</span><strong id="resourceCount">0</strong><small>Tracked entries</small>
+                </article>
+            </section>
+            <section id="resourceRequests" class="panel featured">
+                <div class="section-head">
+                    <div>
+                        <p class="eyebrow">Hospitals</p>
+                        <h2>Hospital Resource Requests</h2>
+                        <p>Blood, oxygen, medicine and other urgent requests sent by hospitals.</p>
+                    </div><span class="live">Live</span>
+                </div>
+                <div id="resourceRequestLoading" class="state">Loading hospital requests…</div>
+                <div id="resourceRequestEmpty" class="state hidden">No hospital resource requests have been submitted.
+                </div>
+                <div id="resourceRequestTableWrapper" class="table-wrap hidden">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Hospital</th>
+                                <th>Resource</th>
+                                <th>Quantity</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                                <th>Submitted</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resourceRequestTableBody"></tbody>
+                    </table>
+                </div>
+            </section>
+            <section id="disasters" class="panel">
+                <div class="section-head">
+                    <div>
+                        <p class="eyebrow">Incident review</p>
+                        <h2>Disaster Reports</h2>
+                    </div>
+                </div>
+                <div id="disasterLoading" class="state">Loading disaster reports…</div>
+                <div id="disasterEmpty" class="state hidden">No disaster reports found.</div>
+                <div id="disasterTableWrapper" class="table-wrap hidden">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Disaster</th>
+                                <th>Severity</th>
+                                <th>Location</th>
+                                <th>Reporter</th>
+                                <th>Status</th>
+                                <th>Submitted</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="disasterTableBody"></tbody>
+                    </table>
+                </div>
+            </section>
+            <section id="helpRequests" class="panel">
+                <div class="section-head">
+                    <div>
+                        <p class="eyebrow">Citizen assistance</p>
+                        <h2>Help Requests</h2>
+                    </div>
+                </div>
+                <div id="requestLoading" class="state">Loading help requests…</div>
+                <div id="requestEmpty" class="state hidden">No help requests found.</div>
+                <div id="requestTableWrapper" class="table-wrap hidden">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Citizen</th>
+                                <th>Request</th>
+                                <th>Priority</th>
+                                <th>Location</th>
+                                <th>Status</th>
+                                <th>Volunteer</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="requestTableBody"></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="disasterModal" class="modal hidden">
+        <div class="modal-card"><button id="closeDisasterModal" class="close" aria-label="Close">×</button>
+            <p class="eyebrow">Disaster report</p>
+            <h2 id="modalDisasterTitle">Report</h2>
+            <div class="details">
+                <div><small>Type</small><strong id="modalDisasterType"></strong></div>
+                <div><small>Severity</small><strong id="modalDisasterSeverity"></strong></div>
+                <div><small>Status</small><strong id="modalDisasterStatus"></strong></div>
+                <div><small>People affected</small><strong id="modalPeopleAffected"></strong></div>
+                <div><small>Location</small><strong id="modalDisasterLocation"></strong></div>
+                <div><small>Landmark</small><strong id="modalDisasterLandmark"></strong></div>
+                <div><small>Immediate rescue</small><strong id="modalImmediateRescue"></strong></div>
+                <div><small>Submitted</small><strong id="modalDisasterCreatedAt"></strong></div>
+                <div><small>Reporter</small><strong id="modalDisasterReporter"></strong></div>
+            </div>
+            <div class="description"><small>Description</small>
+                <p id="modalDisasterDescription"></p>
+            </div>
+
+            <div class="modal-actions"><button id="rejectDisasterButton" class="danger">Reject</button><button
+                    id="approveDisasterButton" class="success">Approve</button></div>
+        </div>
+    </div>
+
+    <div id="requestModal" class="modal hidden">
+        <div class="modal-card"><button id="closeRequestModal" class="close" aria-label="Close">×</button>
+            <p class="eyebrow">Citizen help request</p>
+            <h2 id="modalRequestTitle">Request</h2>
+            <div class="details">
+                <div><small>Type</small><strong id="modalRequestType"></strong></div>
+                <div><small>Priority</small><strong id="modalRequestPriority"></strong></div>
+                <div><small>Status</small><strong id="modalRequestStatus"></strong></div>
+                <div><small>People</small><strong id="modalRequestPeople"></strong></div>
+                <div><small>Citizen</small><strong id="modalRequester"></strong></div>
+                <div><small>Contact</small><strong id="modalRequestContact"></strong></div>
+                <div><small>Location</small><strong id="modalRequestLocation"></strong></div>
+                <div><small>Landmark</small><strong id="modalRequestLandmark"></strong></div>
+                <div><small>Medical urgency</small><strong id="modalMedicalUrgency"></strong></div>
+                <div><small>Submitted</small><strong id="modalRequestCreatedAt"></strong></div>
+                <div><small>Assigned volunteer</small><strong id="modalAssignedVolunteer"></strong></div>
+            </div>
+            <div class="description"><small>Description</small>
+                <p id="modalRequestDescription"></p>
+            </div>
+            <div id="assignmentSection" class="assignment hidden"><label for="volunteerSelect">Assign an available
+                    volunteer</label><select id="volunteerSelect">
+                    <option value="">Select a volunteer</option>
+                </select><small id="volunteerHelpText"></small><button id="assignVolunteerButton"
+                    class="primary-button">Assign volunteer</button></div>
+            <div class="modal-actions"><button id="rejectRequestButton" class="danger">Reject</button><button
+                    id="approveRequestButton" class="success">Approve</button></div>
+        </div>
+    </div>
+
+    <div id="resourceRequestModal" class="modal hidden">
+        <div class="modal-card"><button id="closeResourceRequestModal" class="close" aria-label="Close">×</button>
+            <p class="eyebrow">Hospital resource request</p>
+            <h2 id="modalResourceRequestTitle">Resource Request</h2>
+            <div class="details">
+                <div><small>Hospital</small><strong id="modalResourceHospital"></strong></div>
+                <div><small>Email</small><strong id="modalResourceEmail"></strong></div>
+                <div><small>Resource</small><strong id="modalResourceType"></strong></div>
+                <div><small>Quantity</small><strong id="modalResourceQuantity"></strong></div>
+                <div><small>Priority</small><strong id="modalResourcePriority"></strong></div>
+                <div><small>Status</small><strong id="modalResourceStatus"></strong></div>
+                <div><small>Location</small><strong id="modalResourceLocation"></strong></div>
+                <div><small>Submitted</small><strong id="modalResourceCreatedAt"></strong></div>
+            </div>
+            <div class="description"><small>Details</small>
+                <p id="modalResourceDetails"></p>
+            </div>
+            <div class="modal-actions"><button id="rejectResourceRequestButton" class="danger">Reject</button><button
+                    id="approveResourceRequestButton" class="success">Approve</button></div>
+        </div>
+    </div>
+    <script type="module" src="js/admin.js"></script>
+    <script src="js/dashboard-nav.js"></script>
+</body>
+
+</html>

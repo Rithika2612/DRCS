@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>DRCS | My Requests</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/my-requests.css">
+</head>
+
+<body class="dashboard-screen role-citizen">
+
+<div class="dashboard-layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <span>🛡</span>
+
+            <div>
+                <h2>DRCS</h2>
+                <p>Citizen Portal</p>
+            </div>
+
+        </div>
+        <nav class="sidebar-nav">
+            <a
+                href="citizen.html"
+                class="nav-link"
+>
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a
+                href="report.html"
+                class="nav-link"
+            >
+                <span>📢</span>
+                Report Disaster
+            </a>
+
+
+            <a
+                href="request.html"
+                class="nav-link"
+            >
+                <span>🆘</span>
+                Request Help
+            </a>
+
+
+            <a
+                href="my-requests.html"
+                class="nav-link active"
+            >
+                <span>📋</span>
+                My Requests
+            </a>
+
+
+            <a
+                href="citizen.html#activity"
+                class="nav-link"
+            >
+                <span>◉</span>
+                Notifications
+            </a>
+
+
+            <a
+                href="citizen.html#profile"
+                class="nav-link"
+            >
+                <span>♙</span>
+                Profile
+            </a>
+
+        </nav>
+
+
+        <button
+            type="button"
+            id="logoutButton"
+            class="logout-button"
+        >
+            Logout
+        </button>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="dashboard-main">
+
+        <!-- HEADER -->
+
+        <header class="dashboard-header">
+
+            <div>
+
+                <p class="header-label">
+                    Citizen Assistance
+                </p>
+
+                <h1>
+                    My Requests
+                </h1>
+
+                <p>
+                    Track your submitted requests and view their
+                    latest response status.
+                </p>
+
+            </div>
+
+
+            <div class="user-profile">
+
+                <div
+                    class="profile-icon"
+                    id="profileInitial"
+                >
+                    C
+                </div>
+
+                <div>
+
+                    <strong id="profileName">
+                        Citizen
+                    </strong>
+
+                    <span>
+                        Citizen Account
+                    </span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PAGE ACTION -->
+
+        <section class="requests-heading">
+
+            <div>
+
+                <p class="header-label">
+                    Assistance history
+                </p>
+
+                <h2>
+                    Submitted help requests
+                </h2>
+
+                <p>
+                    Status changes made by administrators and volunteers
+                    will appear here.
+                </p>
+
+            </div>
+
+
+            <a
+                href="request.html"
+                class="new-request-button"
+            >
+                <span>+</span>
+                New Request
+            </a>
+
+        </section>
+
+
+        <!-- SUMMARY CARDS -->
+
+        <section class="request-summary-grid">
+
+            <article class="request-summary-card">
+
+                <div class="summary-icon total-icon">
+                    📋
+                </div>
+
+                <div>
+
+                    <p>
+                        Total Requests
+                    </p>
+
+                    <h3 id="totalCount">
+                        0
+                    </h3>
+
+                </div>
+
+            </article>
+
+
+            <article class="request-summary-card">
+
+                <div class="summary-icon pending-icon">
+                    ⏳
+                </div>
+
+                <div>
+
+                    <p>
+                        Pending
+                    </p>
+
+                    <h3 id="pendingCount">
+                        0
+                    </h3>
+
+                </div>
+
+            </article>
+
+
+            <article class="request-summary-card">
+
+                <div class="summary-icon active-icon">
+                    🚑
+                </div>
+
+                <div>
+
+                    <p>
+                        Active
+                    </p>
+
+                    <h3 id="activeCount">
+                        0
+                    </h3>
+
+                </div>
+
+            </article>
+
+
+            <article class="request-summary-card">
+
+                <div class="summary-icon completed-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <p>
+                        Completed
+                    </p>
+
+                    <h3 id="completedCount">
+                        0
+                    </h3>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- SEARCH AND FILTER -->
+
+        <section class="request-toolbar">
+
+            <div class="request-search">
+
+                <span>⌕</span>
+
+                <input
+                    type="search"
+                    id="requestSearch"
+                    placeholder="Search by type, location or description"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <select
+                id="statusFilter"
+                class="status-filter"
+            >
+
+                <option value="all">
+                    All statuses
+                </option>
+
+                <option value="pending">
+                    Pending
+                </option>
+
+                <option value="assigned">
+                    Assigned
+                </option>
+
+                <option value="in-progress">
+                    In Progress
+                </option>
+
+                <option value="completed">
+                    Completed
+                </option>
+
+                <option value="cancelled">
+                    Cancelled
+                </option>
+
+                <option value="rejected">
+                    Rejected
+                </option>
+
+            </select>
+
+        </section>
+
+
+        <!-- PAGE MESSAGE -->
+
+        <div
+            id="pageMessage"
+            class="page-message"
+            role="status"
+            aria-live="polite"
+        ></div>
+
+
+        <!-- LOADING -->
+
+        <section
+            id="loadingState"
+            class="requests-state"
+        >
+
+            <div class="request-loader"></div>
+
+            <h3>
+                Loading requests
+            </h3>
+
+            <p>
+                Please wait while we retrieve your submissions.
+            </p>
+
+        </section>
+
+
+        <!-- EMPTY STATE -->
+
+        <section
+            id="emptyState"
+            class="requests-state hidden"
+        >
+
+            <div class="state-icon">
+                ◇
+            </div>
+
+            <h3 id="emptyTitle">
+                No requests submitted
+            </h3>
+
+            <p id="emptyMessage">
+                Your help requests will appear here after submission.
+            </p>
+
+            <a href="request.html">
+                Create your first request
+            </a>
+
+        </section>
+
+
+        <!-- REQUEST CARDS -->
+
+        <section
+            id="requestsContainer"
+            class="requests-list hidden"
+        ></section>
+
+    </main>
+
+</div>
+
+
+<!-- REQUEST DETAILS MODAL -->
+
+<div
+    id="requestModal"
+    class="modal-overlay hidden"
+>
+
+    <div class="request-modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <p class="header-label">
+                    Request details
+                </p>
+
+                <h2 id="modalTitle">
+                    Help Request
+                </h2>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="closeModalButton"
+                class="modal-close"
+                aria-label="Close request details"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <div class="modal-status-row">
+
+                <span
+                    id="modalStatus"
+                    class="status-badge"
+                >
+                    Pending
+                </span>
+
+                <span
+                    id="modalPriority"
+                    class="priority-badge"
+                >
+                    Medium Priority
+                </span>
+
+            </div>
+
+
+            <div class="details-grid">
+
+                <div class="detail-item">
+
+                    <span>
+                        Number of people
+                    </span>
+
+                    <strong id="modalPeople">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Contact number
+                    </span>
+
+                    <strong id="modalContact">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Location
+                    </span>
+
+                    <strong id="modalLocation">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Landmark
+                    </span>
+
+                    <strong id="modalLandmark">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Immediate assistance
+                    </span>
+
+                    <strong id="modalImmediate">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Assigned volunteer
+                    </span>
+
+                    <strong id="modalVolunteer">
+                        Not assigned
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Submitted on
+                    </span>
+
+                    <strong id="modalDate">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Last updated
+                    </span>
+
+                    <strong id="modalUpdated">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-description">
+
+                <span>
+                    Description
+                </span>
+
+                <p id="modalDescription">
+                    -
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script
+    type="module"
+    src="js/guard.js"
+></script>
+
+<script
+    type="module"
+    src="js/my-requests.js"
+></script>
+
+</body>
+</html>

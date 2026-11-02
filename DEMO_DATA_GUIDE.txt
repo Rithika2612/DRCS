@@ -1,0 +1,23 @@
+DRCS REALISTIC DEMO DATA
+========================
+
+1. Replace your project with this complete folder.
+2. Open Firebase Console > Firestore Database > Rules.
+3. Replace the rules with the included firestore.rules and click Publish.
+4. Start the project using Live Server.
+5. Log in using your existing Admin account.
+6. Open Admin Dashboard > Demo Data Manager.
+7. Tick the confirmation box and click Generate demo data.
+
+The seeder creates 143 connected fictional records with realistic Indian names
+and Tamil Nadu locations. It does not create Firebase Authentication accounts.
+The generated user documents are dashboard demonstration profiles only.
+
+The operation is idempotent: running it again updates the same documents.
+The Remove demo data button deletes only documents marked demoData: true.
+It does not delete genuine records submitted through the application.
+MAP COORDINATE UPDATE
+All seeded map records now include numeric latitude and longitude values.
+If demo data was generated using an earlier package, open Demo Data Manager and
+click Generate demo data once more. Existing demo documents will be updated;
+they will not be duplicated. Then refresh the Map page.

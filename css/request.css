@@ -1,0 +1,292 @@
+@import url("./form.css");
+
+:root {
+    --request-primary: #745f91;
+    --request-primary-dark: #55416f;
+    --request-secondary: #9b85b6;
+    --request-soft: #f4f0f8;
+    --request-border: #e2d9e9;
+    --request-text: #342d3d;
+    --request-muted: #716878;
+}
+
+.request-page-main {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 94% 4%, rgba(211, 198, 229, .58), transparent 28%),
+        radial-gradient(circle at 10% 96%, rgba(211, 230, 219, .42), transparent 27%),
+        linear-gradient(145deg, #fbf9fc, #f5f1f8);
+}
+
+.request-page-header {
+    margin-bottom: 26px !important;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--request-border);
+}
+
+.request-page-header .header-label {
+    color: var(--request-primary);
+    font-size: 13px;
+}
+
+.request-page-header h1 {
+    color: var(--request-text);
+    font-size: clamp(2rem, 3vw, 2.65rem) !important;
+}
+
+.request-page-header > div > p:last-child {
+    max-width: 760px;
+    color: var(--request-muted) !important;
+    font-size: 16px !important;
+    line-height: 1.6;
+}
+
+/* Keep the guidance compact and give the actual form the available space. */
+.request-page-main .form-layout,
+.role-citizen-form .request-page-main .form-layout {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(290px, 360px) minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+}
+
+.request-page-main .intro-panel {
+    position: sticky;
+    top: 24px;
+    padding: 0;
+}
+
+.request-page-main .info-card {
+    margin-top: 0;
+    padding: 26px;
+    border: 1px solid var(--request-border);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, .9);
+    box-shadow: 0 14px 38px rgba(68, 49, 81, .08);
+}
+
+.request-page-main .info-card h2 {
+    color: var(--request-text);
+    font-size: 18px;
+}
+
+.request-page-main .info-card ul {
+    margin-top: 15px;
+    color: var(--request-muted);
+    font-size: 15px;
+    line-height: 1.75;
+}
+
+.request-page-main .emergency-note {
+    margin-top: 18px;
+    padding: 17px 18px;
+    border: 1px solid #edced5;
+    border-radius: 15px;
+    color: #843946;
+    background: #fff3f5;
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.request-page-main .form-card {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 32px;
+    border: 1px solid var(--request-border);
+    border-top: 5px solid var(--request-primary);
+    border-radius: 22px;
+    background: rgba(255, 255, 255, .96);
+    box-shadow: 0 20px 52px rgba(68, 49, 81, .11);
+}
+
+.request-page-main .form-heading {
+    align-items: center;
+    padding-bottom: 23px;
+}
+
+.request-page-main .section-label {
+    color: var(--request-primary);
+    font-size: 12px;
+}
+
+.request-page-main .form-heading h2 {
+    color: var(--request-text);
+    font-size: 27px;
+}
+
+.request-page-main .required-note {
+    font-size: 13px;
+}
+
+.request-page-main .form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 22px;
+    row-gap: 18px;
+}
+
+.request-page-main .field-group label {
+    min-height: auto;
+    margin-bottom: 9px;
+    color: #4c4353;
+    font-size: 15px;
+    line-height: 1.35;
+}
+
+.request-page-main .field-group input,
+.request-page-main .field-group select {
+    min-height: 52px;
+    padding: 0 15px;
+    font-size: 16px;
+}
+
+.request-page-main .field-group textarea {
+    min-height: 145px;
+    padding: 14px 15px;
+    font-size: 16px;
+}
+
+.request-page-main .field-group input:focus,
+.request-page-main .field-group select:focus,
+.request-page-main .field-group textarea:focus {
+    border-color: var(--request-primary);
+    box-shadow: 0 0 0 4px rgba(116, 95, 145, .13);
+}
+
+.request-page-main .field-error,
+.request-page-main .field-meta > small:last-child {
+    font-size: 12px;
+}
+
+.request-page-main .check-card {
+    margin-top: 20px;
+    padding: 17px;
+    border-color: #d9cde4;
+    background: var(--request-soft);
+}
+
+.request-page-main .check-card strong {
+    font-size: 15px;
+}
+
+.request-page-main .check-card small {
+    font-size: 13px;
+}
+
+.request-page-main .custom-check {
+    border-color: #a993bd;
+}
+
+.request-page-main .check-card input:checked + .custom-check {
+    border-color: var(--request-primary);
+    background: var(--request-primary);
+}
+
+.request-page-main .form-actions {
+    align-items: center;
+    margin-top: 24px;
+}
+
+.request-page-main .primary-button,
+.request-page-main .secondary-button {
+    min-height: 48px;
+    padding: 0 22px;
+    font-size: 15px;
+}
+
+.request-page-main .primary-button {
+    background: linear-gradient(135deg, var(--request-primary-dark), var(--request-secondary));
+    box-shadow: 0 11px 24px rgba(85, 65, 111, .22);
+}
+
+.location-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.location-button {
+    flex: 0 0 auto;
+    min-height: 40px;
+    padding: 0 14px;
+    border: 1px solid #cfc2dc;
+    border-radius: 10px;
+    color: var(--request-primary-dark);
+    background: var(--request-soft);
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.location-button:hover {
+    background: #ebe3f2;
+}
+
+.location-button:disabled {
+    cursor: wait;
+    opacity: .68;
+}
+
+.location-status {
+    color: var(--request-muted);
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+.location-status.success {
+    color: #24734b;
+}
+
+.location-status.error {
+    color: #b42318;
+}
+
+@media (max-width: 1180px) {
+    .request-page-main .form-layout,
+    .role-citizen-form .request-page-main .form-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .request-page-main .intro-panel {
+        position: static;
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(260px, .6fr);
+        gap: 18px;
+    }
+
+    .request-page-main .emergency-note {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 720px) {
+    .request-page-main {
+        padding: 24px 16px 42px !important;
+    }
+
+    .request-page-header {
+        margin-bottom: 20px !important;
+    }
+
+    .request-page-main .intro-panel,
+    .request-page-main .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .request-page-main .form-card {
+        padding: 24px 18px;
+    }
+
+    .request-page-main .form-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .location-actions {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

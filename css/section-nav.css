@@ -1,0 +1,12 @@
+section[id]{scroll-margin-top:28px}
+.sidebar nav a.active,
+.sidebar .nav-link.active{
+  color:#fff;
+  background:linear-gradient(105deg,#16845b,#d18b2c);
+  box-shadow:0 10px 24px rgba(7,31,24,.22);
+}
+.role-hospital .sidebar nav a.active,
+.role-hospital .sidebar .nav-link.active{
+  background:linear-gradient(105deg,#008f9c,#14b8a6);
+  box-shadow:0 10px 24px rgba(0,87,96,.24);
+}
